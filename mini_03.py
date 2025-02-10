@@ -14,8 +14,10 @@ def get_commit_list(path, good, bad):
     return commits[::-1]
 
 def git_bisect(path, good, bad, test_cmd):
-    main_commit = subprocess.run(f'git rev-parse HEAD', shell=True, cwd=path,
-                                 capture_output=True, text=True).stdout
+    main_commit = subprocess.run(f"git symbolic-ref refs/remotes/origin/HEAD \
+    | sed 's@^refs/remotes/origin/@@'",
+                                 shell=True, cwd=path, capture_output=True,
+                                 text=True).stdout
     
     commits = get_commit_list(path, good, bad)
 
