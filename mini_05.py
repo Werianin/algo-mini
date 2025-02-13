@@ -14,9 +14,34 @@ def shell_sort(array: list, sequence: list):
     for k in sequence:
         insertion_sort_k(array, k)
 
+def merge(left, right):
+    res = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            res.append(left[i])
+            i += 1
+        else:
+            res.append(right[j])
+            j += 1
+    res.extend(left[i:])
+    res.extend(right[j:])
+    return res
+
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+
+    return merge(left, right)
+
 ciura_seq = [44842, 19930, 8858, 3937, 1750, 701, 301, 132, 57, 23, 10, 4, 1]
 
-l = [1,5,1,1,6,4]
+l = [1, 5, 3, 1, 0, 7]
+print(merge_sort(l))
+
 '''
 for _ in range(20):
     var = random.randint(1, 10**3)
@@ -32,7 +57,7 @@ if right:
     l.append(right.pop(0))
 
 print(l)
-'''
+
 def wiggleSort(nums):
     shell_sort(nums, ciura_seq)
     mid = len(nums) // 2
@@ -44,7 +69,4 @@ def wiggleSort(nums):
         nums[-1] = right[-1]
 wiggleSort(l)
 print(l)
-
-
-
-
+'''
