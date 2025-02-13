@@ -37,12 +37,11 @@ def wiggleSort(nums):
     shell_sort(nums, ciura_seq)
     mid = len(nums) // 2
     left, right = nums[:mid], nums[mid:]
-    nums = []
-    for _ in range(mid):
-        nums.append(right.pop(0))
-        nums.append(left.pop(0))
-    if right:
-        nums.append(right.pop(0))
+    for i in range(mid):
+        nums[2 * i] = right[i]
+        nums[2 * i + 1] = left[i]
+    if len(right) > len(left):
+        nums[-1] = right[-1]
 wiggleSort(l)
 print(l)
 
