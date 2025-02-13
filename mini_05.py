@@ -16,21 +16,36 @@ def shell_sort(array: list, sequence: list):
 
 ciura_seq = [44842, 19930, 8858, 3937, 1750, 701, 301, 132, 57, 23, 10, 4, 1]
 
-l = []
+l = [1,5,1,1,6,4]
+'''
 for _ in range(20):
     var = random.randint(1, 10**3)
     l.append(var)
-
-
 shell_sort(l, ciura_seq)
 mid = len(l) // 2
 left, right = l[:mid], l[mid:]
-res = []
+l = []
 for _ in range(mid):
-    res.append(right.pop(0))
-    res.append(left.pop(0))
+    l.append(right.pop(0))
+    l.append(left.pop(0))
 if right:
-    res.append(right.pop(0))
+    l.append(right.pop(0))
 
 print(l)
-print(res)
+'''
+def wiggleSort(nums):
+    shell_sort(nums, ciura_seq)
+    mid = len(nums) // 2
+    left, right = nums[:mid], nums[mid:]
+    nums = []
+    for _ in range(mid):
+        nums.append(right.pop(0))
+        nums.append(left.pop(0))
+    if right:
+        nums.append(right.pop(0))
+wiggleSort(l)
+print(l)
+
+
+
+
