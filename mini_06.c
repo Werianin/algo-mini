@@ -1,37 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void in_place_merge(int* arr, size_t beg, size_t mid, size_t end) {
-	if (beg >= end){
-        return;
-    }
-	size_t l = beg;
-    size_t r = mid + 1;
-	while (l <= mid && r <= end) {
-		if (arr[l] <= arr[r]) {
-            l++;
-        }
-		else {
-			int temp = arr[r];
-			for (size_t k = r++; k > l; k--) {
-				arr[k] = arr[k - 1];
-            }
-			arr[l++] = temp;
-			mid++;
-		}
-	}
+void swap(int* a, int* b) {
+  int temp = *a;
+  *a = *b;
+  *b = temp;
 }
 
-void merge_sort(int* arr, size_t beg, size_t end) {
-	if (beg >= end) {
-        return;
+void merge(int* arr, size_t beg, size_t mid, size_t end) {
+  size_t len = end - beg + 1;
+  size_t step = (len + 1) / 2;
+  while (step > 0) {
+    size_t i = beg;
+    size_t j = beg + step;
+    while (j <= end) {
+      if (arr[i] > arr[j]) {
+        swap(arr + i, arr + j);
+      }
+      i++;
+      j++;
     }
-	size_t mid = (end - beg) / 2 + beg;
+    if (step == 1) {
+        step = 0;
+    }
+    else {
+        step = (step + 1) / 2;
+    }
+  }
+}
+void merge_sort(int* arr, size_t beg, size_t end) {
+  while (beg >= end) {
+    return;
+  }
+  size_t mid = beg + (end - beg) / 2;
+  merge_sort(arr, beg, mid);
+  merge_sort(arr, mid + 1, end);
 
-	merge_sort(arr, beg, mid);
-	merge_sort(arr, mid + 1, end);
-
-	in_place_merge(arr, beg, mid, end);
+  merge(arr, beg, mid, end);
+}
+int* sortArray(int* arr, size_t len) {
+  merge_sort(arr, 0, len - 1);
+  return arr;
 }
 
 int main() {
