@@ -9,10 +9,10 @@ void swap(int* a, int* b) {
 
 void merge(int* arr, size_t beg, size_t mid, size_t end) {
   size_t len = end - beg + 1;
-  size_t gap = len / 2 + len % 2;
-  while (gap > 0) {
+  size_t step = (len + 1) / 2;
+  while (step > 0) {
     size_t i = beg;
-    size_t j = beg + gap;
+    size_t j = beg + step;
     while (j <= end) {
       if (arr[i] > arr[j]) {
         swap(arr + i, arr + j);
@@ -20,11 +20,11 @@ void merge(int* arr, size_t beg, size_t mid, size_t end) {
       i++;
       j++;
     }
-    if (gap <= 1) {
-        gap = 0;
+    if (step <= 1) {
+        step = 0;
     }
     else {
-        gap = gap / 2 + gap % 2;
+        step = step / 2 + step % 2;
     }
   }
 }
