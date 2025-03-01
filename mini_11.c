@@ -66,16 +66,3 @@ void quickSort_Hoare(int* arr, int beg, int end)
 
 
 
-int main() {
-    size_t len = 8;
-    int* arr = (int*) malloc(len * sizeof(int));
-    for (size_t i = 0; i < len; i++) {
-        scanf("%d", arr + i);
-    }
-    quickSort_Lomuto(arr, len);
-    for (size_t i = 0; i < len; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-    free(arr);
-}
