@@ -5,16 +5,16 @@ class ListNode:
 
 def reverse_between(head, left, right):
     cur_node = head
-    while cur_node != left:
+    for _ in range(left):
         cur_node = cur_node.next
-    stack = []
-    
-    cur_node = cur_node.next
-    while cur_node != right:
-        stack.append(cur_node)
 
-    cur_node = left
-    while stack:
-        cur_node.next = stack.pop()
-    cur_node.next = right
-    return head
+    prev = cur_node
+    cur_node = cur_node.next
+
+    for _ in range(right - left):
+        temp = cur_node.next
+        prev = cur_node
+        cur_node.next = left.next
+        left.next = cur_node
+        prev.next = temp
+        cur_node = temp
