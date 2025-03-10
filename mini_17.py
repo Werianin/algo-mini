@@ -13,17 +13,17 @@ def merge_sorted_lists(lists):
 
     for node in lists:
         if node:
-            heapq.heappush(heap, node)
+            heapq.heappush(heap, (node.val, node))
 
     start = ListNode(0)
     cur = start
 
     while heap:
-        node = heapq.heappop(heap)
+        val, node = heapq.heappop(heap)
         cur.next = node
         cur = cur.next
 
         if node.next:
-            heapq.heappush(heap, node.next)
+            heapq.heappush(heap, (node.next.val, node.next))
 
     return start.next
