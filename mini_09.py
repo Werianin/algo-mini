@@ -25,9 +25,14 @@ def my_radix_sort(arr: list):
 
     for sym in range(max_len -1, -1, -1):
         arr = counting_sort_str(arr, max_len, sym)
+        print(arr)
     return arr
 
 d1 = ['gag', 'vkbsj', 'adfaf', 'tqwtt', 'varkbhv']
+print(d1)
+my_radix_sort(d1)
+
+'''
 d2 = """In my younger and more vulnerable years my father gave me some advice
     that I ve been turning over in my mind ever since   Whenever you feel like
     criticizing anyone   he told me   just remember that all the people in this
@@ -47,3 +52,4 @@ d3 = d3.lower().split()
 assert my_radix_sort(d1) == sorted(d1)
 assert my_radix_sort(d2) == sorted(d2)
 assert my_radix_sort(d3) == sorted(d3)
+'''

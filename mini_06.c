@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+size_t steps = 0;
+size_t huhs = 0;
+
 void swap(int* a, int* b) {
   int temp = *a;
   *a = *b;
@@ -14,8 +17,10 @@ void merge(int* arr, size_t beg, size_t mid, size_t end) {
     size_t i = beg;
     size_t j = beg + step;
     while (j <= end) {
+      huhs++;
       if (arr[i] > arr[j]) {
         swap(arr + i, arr + j);
+        steps++;
       }
       i++;
       j++;
@@ -28,8 +33,13 @@ void merge(int* arr, size_t beg, size_t mid, size_t end) {
     }
   }
 }
+
+void new_merge(int* arr, size_t beg, size_t mid, size_t end) {
+
+}
+
 void merge_sort(int* arr, size_t beg, size_t end) {
-  while (beg >= end) {
+  if (beg >= end) {
     return;
   }
   size_t mid = beg + (end - beg) / 2;
@@ -38,13 +48,14 @@ void merge_sort(int* arr, size_t beg, size_t end) {
 
   merge(arr, beg, mid, end);
 }
+
 int* sortArray(int* arr, size_t len) {
   merge_sort(arr, 0, len - 1);
   return arr;
 }
 
 int main() {
-    size_t l = 8;
+    size_t l = 10;
     int* arr = (int*) malloc(l * sizeof(int));
     for (size_t i = 0; i < l; i++) {
         scanf("%d", arr + i);
@@ -54,5 +65,6 @@ int main() {
         printf("%d ", arr[i]);
     }
     printf("\n");
+    printf("%zu %zu\n", huhs, steps);
     free(arr);
 }
