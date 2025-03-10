@@ -11,19 +11,19 @@ class ListNode:
 def merge_sorted_lists(lists):
     heap = []
 
-    for i in range(len(lists)):
-        if lists[i]:
-            heapq.heappush(heap, (lists[i].val, i, lists[i]))
+    for node in lists:
+        if node:
+            heapq.heappush(heap, node)
 
     start = ListNode(0)
     cur = start
 
     while heap:
-        val, idx, node = heapq.heappop(heap)
+        node = heapq.heappop(heap)
         cur.next = node
         cur = cur.next
 
         if node.next:
-            heapq.heappush(heap, (node.next.value, idx, node.next))
+            heapq.heappush(heap, node.next)
 
     return start.next
