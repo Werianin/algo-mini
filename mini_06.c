@@ -20,7 +20,6 @@ void merge(int* arr, size_t beg, size_t mid, size_t end) {
       huhs++;
       if (arr[i] > arr[j]) {
         swap(arr + i, arr + j);
-        steps++;
       }
       i++;
       j++;
@@ -34,10 +33,6 @@ void merge(int* arr, size_t beg, size_t mid, size_t end) {
   }
 }
 
-void new_merge(int* arr, size_t beg, size_t mid, size_t end) {
-
-}
-
 void merge_sort(int* arr, size_t beg, size_t end) {
   if (beg >= end) {
     return;
@@ -47,6 +42,9 @@ void merge_sort(int* arr, size_t beg, size_t end) {
   merge_sort(arr, mid + 1, end);
 
   merge(arr, beg, mid, end);
+  printf(" %zu", huhs);
+  steps += huhs;
+  huhs = 0;
 }
 
 int* sortArray(int* arr, size_t len) {
@@ -55,16 +53,18 @@ int* sortArray(int* arr, size_t len) {
 }
 
 int main() {
-    size_t l = 10;
+    size_t l = 16;
     int* arr = (int*) malloc(l * sizeof(int));
     for (size_t i = 0; i < l; i++) {
-        scanf("%d", arr + i);
+        //scanf("%d", arr + i);
+        arr[i] = l - i;
     }
     merge_sort(arr, 0, l - 1);
+    printf("\n\n");
     for (size_t i = 0; i < l; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
-    printf("%zu %zu\n", huhs, steps);
+    printf("%zu\n", steps);
     free(arr);
 }

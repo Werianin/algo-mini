@@ -1,5 +1,3 @@
-import random
-
 def div(dividend, divider):
     if divider == 0:
         print("Division by zero error")
@@ -17,13 +15,6 @@ def div(dividend, divider):
         q = q * 10 + res
     print(cnt)
     return q, r
-div(5454327653, 1)
-'''
-for _ in range(999999):
-    a = random.randint(1, 10**9)
-    b = random.randint(1, 10**9)
-    if div(a, b) != (a // b, a % b):
-        print('Test broke on ', a, b)
-        exit(1)
-print('All tests passed')
-'''
+
+dividend, divider = int(input()), int(input())
+print(div(dividend, divider))
